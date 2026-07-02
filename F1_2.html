@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Logo Clock Background</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+    .bg-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('https://1000logos.net/wp-content/uploads/2021/06/F1-logo.png') no-repeat center center;
+      background-size: contain; /* Show whole image always */
+      background-color: #fff;
+      z-index: -1;
+    }
+    .clock {
+      position: fixed;
+      left: 50%;
+      bottom: 36px;
+      transform: translateX(-50%);
+      color: #ff0000; /* Pure red */
+      font-size: 4em;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      font-weight: bold;
+      z-index: 1;
+      padding: 12px 32px;
+      border-radius: 16px;
+      border: none;
+      background: none;
+      text-shadow: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="clock" id="clock"></div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("clock").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

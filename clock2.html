@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Battery Status</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #clock {
+            font-size: 80px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px #ff0000;
+        }
+        #date {
+            font-size: 36px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 2px;
+        }
+        #battery {
+            position: fixed;
+            bottom: 32px;
+            left: 0;
+            width: 100vw;
+            text-align: center;
+            font-size: 28px;
+            text-shadow: 0 0 7px #ff0000;
+            letter-spacing: 2px;
+            pointer-events: none;
+            user-select: none;
+        }
+        .clock-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+    </div>
+    <div id="battery"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            // Time
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Date
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString(undefined, options);
+        }
+
+        function updateBatteryInfo(battery) {
+            const percent = Math.round(battery.level * 100);
+            const chargingSymbol = battery.charging ? ' ⚡' : '';
+            document.getElementById('battery').textContent = `Battery: ${percent}%${chargingSymbol}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(function(battery) {
+                updateBatteryInfo(battery);
+                battery.onlevelchange = function() {
+                    updateBatteryInfo(battery);
+                };
+                battery.onchargingchange = function() {
+                    updateBatteryInfo(battery);
+                };
+            });
+        } else {
+            document.getElementById('battery').textContent = 'Battery: Not Supported';
+        }
+    </script>
+</body>
+</html>

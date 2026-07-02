@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TADC Themed Clock</title>
+  <!-- Substitute font for "Lemon Milk" style (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-red: #ef372c;
+      --c-yellow: #ffe269;
+      --c-blue: #5860c3;
+      --c-purple: #bd96bf;
+      --c-pink: #ffeeeb;
+      --c-bg1: #511b11;
+      --c-bg2: #bd96bf;
+      --c-bg3: #ffe269;
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* TADC-style bright but dramatic gradient background */
+      background: linear-gradient(135deg, var(--c-bg1), var(--c-bg2) 55%, var(--c-bg3));
+    }
+    .circus-clock-container {
+      background: rgba(255,255,255,0.10);
+      box-shadow: 0 0 32px 10px var(--c-blue);
+      border-radius: 32px;
+      padding: 48px 80px;
+      text-align: center;
+      border: 5px solid var(--c-yellow);
+    }
+    .circus-clock {
+      font-family: 'Luckiest Guy', 'Montserrat', sans-serif;
+      font-size: 4em;
+      color: var(--c-red);
+      text-shadow: 2px 2px 6px var(--c-yellow), 0 4px 18px var(--c-blue), 0 2px 14px var(--c-purple);
+      letter-spacing: 0.09em;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+    .circus-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3em;
+      color: var(--c-yellow);
+      letter-spacing: 0.12em;
+      text-shadow: 0 0 6px var(--c-pink);
+    }
+  </style>
+</head>
+<body>
+  <div class="circus-clock-container">
+    <div class="circus-clock" id="tadc-time">03:00:00</div>
+    <div class="circus-label">The Amazing Digital Circus</div>
+  </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("tadc-time").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

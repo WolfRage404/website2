@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clock at Bottom Over Image</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+    .bg-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('https://images.ctfassets.net/1fvlg6xqnm65/pJwyo8fihahwVLW42RvqS/594a0ec46ee1547825d2ed22f3475698/M375739.jpg?w=1920&q=75&fm=webp') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+    .clock {
+      position: fixed;
+      left: 50%;
+      bottom: 36px;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 4em;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      -webkit-text-stroke: 4px #000;
+      text-stroke: 4px #000;
+      text-shadow:
+        0 0 8px #000,
+        0 0 2px #000,
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        4px 4px 16px #000,
+        -4px -4px 16px #000;
+      font-weight: bold;
+      z-index: 1;
+      padding: 12px 32px;
+      border-radius: 16px;
+      border: none;
+      background: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="clock" id="clock"></div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("clock").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

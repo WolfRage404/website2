@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Murder Drones Themed Clock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"> <!-- Substitute for Codename Coder 4F -->
+  <style>
+    :root {
+      --c1: #4e4c7b;   /* East Bay */
+      --c2: #6a4f78;   /* Smoky */
+      --c3: #8d5b9a;   /* Trendy Pink */
+      --c4: #b47f7e;   /* Brandy Rose */
+      --c5: #f9c54e;   /* Saffron Mango */
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5));
+      overflow: hidden;
+    }
+    .clock-container {
+      background: rgba(20, 18, 30, 0.8);
+      box-shadow: 0 0 32px 10px #4e4c7b88, 0 0 64px #f9c54e55;
+      border-radius: 32px;
+      padding: 48px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px solid var(--c3);
+    }
+    .murder-clock {
+      color: var(--c5);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 5em;
+      letter-spacing: 0.1em;
+      text-shadow:
+        0 0 6px var(--c5),
+        0 0 24px var(--c2),
+        0 0 36px #fff2,
+        0 8px 16px #000b;
+      transition: color 0.2s;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: var(--c3);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1em;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 12px var(--c3);
+      margin-top: 0.4em;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-container">
+    <div class="murder-clock" id="time">21:17:42</div>
+    <div class="subtitle">System Uplink</div>
+  </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("time").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

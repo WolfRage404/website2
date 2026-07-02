@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Windows Update</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      overflow: hidden;
+    }
+    .center-box {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .spinner {
+      margin: 0 auto 20px auto;
+      width: 40px;
+      height: 40px;
+      border: 5px solid #444;
+      border-top: 5px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .main-text {
+      font-size: 22px;
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+    .sub-text {
+      font-size: 18px;
+      color: #fff;
+      opacity: 0.9;
+    }
+    .bottom-warning {
+      position: absolute;
+      bottom: 8vw;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+      color: #fff;
+      opacity: 0.9;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-box">
+    <div class="spinner"></div>
+    <div class="main-text" id="progress">Working on updates <span id="percent">1</span>%</div>
+    <div class="sub-text">Please keep your computer on.</div>
+  </div>
+  <div class="bottom-warning">
+    Your computer may restart a few times.
+  </div>
+  <script>
+    let percent = 1;
+    const percentSpan = document.getElementById('percent');
+    function updateProgress() {
+      if (percent < 100) {
+        percent += Math.floor(Math.random() * 3); // jumps 1-2%
+        if (percent > 100) percent = 100;
+        percentSpan.textContent = percent;
+        setTimeout(updateProgress, Math.random() * 2000 + 800);
+      }
+    }
+    updateProgress();
+  </script>
+</body>
+</html>

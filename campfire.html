@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detailed Animated ASCII Campfire</title>
+  <style>
+    body {
+      background: #1c1109;
+      color: #ffd580;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .ascii-container {
+      background: #2b1b09;
+      padding: 36px;
+      border-radius: 24px;
+      box-shadow: 0 0 40px 10px #ff9400bb, 0 0 10px #702200;
+      font-size: 1.2em;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      line-height: 1.10;
+      border: 2px solid #ffa03a66;
+    }
+  </style>
+</head>
+<body>
+  <div class="ascii-container">
+    <pre id="campfire"></pre>
+  </div>
+  <script>
+    // Four detailed animation frames
+    const frames = [
+`          (  )   (   )  )
+         ) (   )  (  (
+         ( )  (    ) )
+         _____________
+        <_____________> ___
+        |             |/ _ \\
+        |               | | |
+        |               |_| |
+     ___|             |\\___/
+    /    \\___________/    \\
+    \\_____________________/
+       //           \\\\
+      ((             ))
+     ((               ))
+     ((               ))
+      ((             ))
+        ((         ))
+           ((   ))
+             ( )
+
+      ~*~*~~*~*~*~*~*~*~`,
+
+`           (   (   )  )
+         ) (  (   ( (
+         (  ) )  ) )
+          _____________
+         <_____________> ___
+         |             |/ _ \\
+         |               | | |
+         |               |_| |
+      ___|             |\\___/
+     /    \\___________/    \\
+     \\_____________________/
+        //           \\\\
+       ((             ))
+      ((               ))
+      ((               ))
+       ((             ))
+         ((         ))
+            ((   ))
+              ( )
+
+     ~~~*~**~**~*~***~`,
+
+`           (    ) )
+          ( (   ( (
+         (   ) )  )
+         _____________
+        <_____________> ___
+        |             |/ _ \\
+        |               | | |
+        |               |_| |
+     ___|             |\\___/
+    /    \\___________/    \\
+    \\_____________________/
+       //           \\\\
+      ((             ))
+     ((               ))
+     ((               ))
+      ((             ))
+        ((         ))
+           ((   ))
+             ( )
+
+      ~*~*~*~*~**~*~~*~`,
+
+`         ( (  (    ) )
+        ( (  (  ( (
+         ( ) )  )
+        _____________
+       <_____________> ___
+       |             |/ _ \\
+       |               | | |
+       |               |_| |
+    ___|             |\\___/
+   /    \\___________/    \\
+   \\_____________________/
+      //           \\\\
+     ((             ))
+    ((               ))
+    ((               ))
+     ((             ))
+       ((         ))
+          ((   ))
+            ( )
+
+   ~*~~*~*~**~*~**~*~`
+    ];
+
+    let idx = 0;
+    setInterval(() => {
+      document.getElementById('campfire').textContent = frames[idx];
+      idx = (idx + 1) % frames.length;
+    }, 350);
+  </script>
+</body>
+</html>
